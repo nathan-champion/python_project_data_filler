@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "project_data_filler_nchwomp"
+version = "0.1.0"
+authors = [
+    { name="Nathan Champion, email="nchampion301@gmail.com" },
+]
+description "Just a tool that will allow me to fill out the information in these files from a skeleton project."
+readme = "README.md"
+licence = { file="LICENSE" }
+requires-python = ">=$REQ_PYTHON_VERSION$"
+classifiers = [
+    
+]
+
+[project.urls]
+"Homepage" = "$PROJECT_HOMEPAGE$"
+"Bug Tracker" = "$PROJECT_BUGS_PAGE$"
