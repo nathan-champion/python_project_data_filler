@@ -101,18 +101,18 @@ def create_files(root_dir, blueprint:str, replacements:dict):
     file.write(filled_blueprint)
     file.close()
 
-    file = open(root_dir / "LICENSE", 'x')
-    file.close()
-
-    file = open (root_dir / "README.md", 'x')
-    file.close()
+    make_empty_file(root_dir, "LICENSE")
+    make_empty_file(root_dir, "README.md")
 
     module_path = root_dir / "src" / package_dir
+    module_file_name = "{}.py".format(replacements["$MODULE_NAME"])
 
-    file = open(module_path / "__init__.py", 'x' )
-    file.close()
+    make_empty_file(module_path, "__init__.py")
+    make_empty_file(module_path, module_file_name)
 
-    file = open(module_path / "{}.py".format(replacements["$MODULE_NAME"]), 'x')
+
+def make_empty_file(file_path, file_name):
+    file = open(file_path / file_name, 'x') 
     file.close()
 
 
