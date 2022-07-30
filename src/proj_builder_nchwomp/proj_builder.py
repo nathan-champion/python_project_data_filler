@@ -20,11 +20,11 @@ build-backend = "setuptools.build_meta"
 name = "$PACKAGE_NAME_$USER_NAME"
 version = "$VERSION_MAJOR.$VERSION_MINOR.$VERSION_REVISION"
 authors = [
-    { name="$MY_NAME, email="$MY_EMAIL" },
+    { name="$MY_NAME", email="$MY_EMAIL" },
 ]
-description "$DESCRIPTION"
+description = "$DESCRIPTION"
 readme = "README.md"
-licence = { file="LICENSE" }
+license = { file="LICENSE" }
 requires-python = ">=$REQ_PYTHON_VER"
 classifiers = [
     

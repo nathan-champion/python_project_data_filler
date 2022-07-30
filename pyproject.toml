@@ -6,14 +6,20 @@ build-backend = "setuptools.build_meta"
 name = "proj_builder_nchwomp"
 version = "0.1.0"
 authors = [
-    { name="Nathan Champion, email="nchampion301@gmail.com" },
+    { name="Nathan Champion", email="nchampion301@gmail.com" },
 ]
-description "Just a tool that will allow me to fill out the information in these files from a skeleton project."
+description = "Just a tool that will allow me to fill out the information in these files from a skeleton project."
 readme = "README.md"
-licence = { file="LICENSE" }
-requires-python = ">=$REQ_PYTHON_VERSION$"
+license = { file="LICENSE" }
+requires-python = ">=3.10"
 classifiers = [
-    
+    "Development Status :: 1 - Planning",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Documentation",
 ]
 
 [project.urls]
