@@ -125,7 +125,7 @@ def run():
 
     gather_data(replacements)
 
-    root_directory = Path.cwd().parent / project_path
+    root_directory = Path.cwd() / project_path
     print(f"This will create your project at {root_directory}. Is this where you want it?")
     decision = get_defined_input("Y", "n")
     
