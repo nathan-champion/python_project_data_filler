@@ -2,3 +2,5 @@
 src/proj_builder_nchwomp.egg-info/
 
 dist/
+
+src/proj_builder.egg-info/
