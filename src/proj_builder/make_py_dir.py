@@ -17,7 +17,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "$PACKAGE_NAME_$USER_NAME"
+name = "$PACKAGE_NAME"
 version = "$VERSION_MAJOR.$VERSION_MINOR.$VERSION_REVISION"
 authors = [
     { name="$MY_NAME", email="$MY_EMAIL" },
@@ -116,8 +116,7 @@ def make_empty_file(file_path, file_name):
     file.close()
 
 
-if __name__ == '__main__':
-
+def run():
     try:
         project_path = argv[1]
     except:
@@ -135,4 +134,5 @@ if __name__ == '__main__':
         create_files(root_directory, toml_blueprint, replacements)
 
 
-    
+if __name__ == '__main__':
+    run()
