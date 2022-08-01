@@ -33,6 +33,7 @@ classifiers = [
 "Bug Tracker" = "$PROJECT_BUGS_PAGE"
 """
 
+
 replacements = {
     "$PACKAGE_NAME": "",
     "$VERSION_MAJOR": "0",
@@ -45,12 +46,14 @@ replacements = {
     "$PROJECT_BUGS_PAGE": "$PROJECT_BUGS_PAGE",
 }
 
+
 package_dir = ""
 
 
 def sanitize_directory_name(dir_name):
     sanitized = "".join([c for c in dir_name if c.isalnum() or c == ' ']).rstrip()
     return sanitized
+
 
 def get_defined_input(*choices):
     prompt = "/".join(choices) + ":"
@@ -75,7 +78,6 @@ def get_alphanumeric_input(prompt):
         approved = tested.isalnum()
 
     return tested
-
 
 
 def gather_data(replacements):
