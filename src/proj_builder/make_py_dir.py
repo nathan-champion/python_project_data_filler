@@ -48,6 +48,10 @@ replacements = {
 package_dir = ""
 
 
+def sanitize_directory_name(dir_name):
+    sanitized = "".join([c for c in dir_name if c.isalnum() or c == ' ']).rstrip()
+    return sanitized
+
 def get_defined_input(*choices):
     prompt = "/".join(choices) + ":"
     
@@ -124,7 +128,8 @@ def make_empty_file(file_path, file_name):
 
 def run():
     try:
-        project_path = argv[1]
+        project_path = sanitize_directory_name(argv[1])
+        print(f"We've sanitized the string if necessary.  Your directory is {project_path}.")
     except:
         print(usage)
         exit()
