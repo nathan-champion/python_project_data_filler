@@ -1,8 +1,6 @@
-from operator import index
 from sys import argv
 from pathlib import Path
 from sys import exit
-import os
 
 usage = """
 Using this tool requires the command line arguments below:
@@ -37,7 +35,6 @@ classifiers = [
 
 replacements = {
     "$PACKAGE_NAME": "",
-    "$USER_NAME": "",
     "$VERSION_MAJOR": "0",
     "$VERSION_MINOR": "1",
     "$VERSION_REVISION": "0",
@@ -85,7 +82,7 @@ def create_directories(root_dir):
         print(f"Directory {root_dir} already exists!  Please try again and choose a new name for your directory!")
         exit()
     
-    package_dir = "{}_{}".format(replacements["$PACKAGE_NAME"], replacements["$USER_NAME"])
+    package_dir = replacements["$PACKAGE_NAME"]
     Path.mkdir(root_dir / "src" / package_dir, parents=True)
     Path.mkdir(root_dir / "tests")
 
