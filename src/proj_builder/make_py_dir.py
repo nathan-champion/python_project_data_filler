@@ -64,13 +64,22 @@ def get_defined_input(*choices):
     return selection
 
 
+def get_alphanumeric_input(prompt):
+    approved = False
+    while not approved:
+        tested = input(prompt).strip() 
+        approved = tested.isalnum()
+
+    return tested
+
+
+
 def gather_data(replacements):
     
-    replacements["$PACKAGE_NAME"] = input("Enter package name:").strip()
-    replacements["$USER_NAME"] = input("Enter your user name:").strip()
-    replacements["$MY_NAME"] = input("Enter your real name:").strip()
-    replacements["$MY_EMAIL"] = input("Enter your email address:").strip()
-    replacements["$MODULE_NAME"] = input("Enter your starting module name:").strip()
+    replacements["$PACKAGE_NAME"] = get_alphanumeric_input("Enter package name:")
+    replacements["$MY_NAME"] = get_alphanumeric_input("Enter your real name:")
+    replacements["$MY_EMAIL"] = get_alphanumeric_input("Enter your email address:")
+    replacements["$MODULE_NAME"] = get_alphanumeric_input("Enter your starting module name:")
 
 
 def create_directories(root_dir):
