@@ -93,7 +93,6 @@ def get_email(prompt):
         tested = input(prompt).strip()
         try:
             approved = tested.index('@') != -1
-            print("{}".format(tested.index('@') != -1))
         except:
             pass
 
