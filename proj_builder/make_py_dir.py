@@ -79,30 +79,49 @@ def get_alphanumeric_input(prompt):
 
     return tested
 
+def get_name(prompt):
+    approved = False
+    while not approved:
+        tested = input(prompt).strip()
+        approved = all(c.isalpha() or c.isspace() for c in tested)
 
-def gather_data(replacements):
-    
+    return tested
+
+def get_email(prompt):
+    approved = False
+    while not approved:
+        tested = input(prompt).strip()
+        try:
+            approved = tested.index('@') != -1
+            print("{}".format(tested.index('@') != -1))
+        except:
+            pass
+
+    return tested
+
+
+def gather_replacements(replacements):   
     replacements["$PACKAGE_NAME"] = get_alphanumeric_input("Enter package name:")
-    replacements["$MY_NAME"] = get_alphanumeric_input("Enter your real name:")
-    replacements["$MY_EMAIL"] = get_alphanumeric_input("Enter your email address:")
+    replacements["$MY_NAME"] = get_name("Enter your real name:")
+    replacements["$MY_EMAIL"] = get_email("Enter your email address:")
     replacements["$MODULE_NAME"] = get_alphanumeric_input("Enter your starting module name:")
 
 
-def create_directories(root_dir):
-    global package_dir
+def create_directories(root_dir, source_dir):
+    make_path_or_die(root_dir)
+    make_path_or_die(source_dir)
+    make_path_or_die(root_dir / "tests")
 
+
+def make_path_or_die(path):
     try:
-        Path.mkdir(root_dir)
+        Path.mkdir(path, parents=True)
     except:
-        print(f"Directory {root_dir} already exists!  Please try again and choose a new name for your directory!")
+        print(f"Directory {path} already exists!  Exiting!")
         exit()
-    
-    package_dir = replacements["$PACKAGE_NAME"]
-    Path.mkdir(root_dir / "src" / package_dir, parents=True)
-    Path.mkdir(root_dir / "tests")
 
 
-def create_files(root_dir, blueprint:str, replacements:dict):
+def create_files(root_dir, source_dir, blueprint:str, replacements:dict):
     global package_dir
     
     filled_blueprint = blueprint[:]
@@ -116,7 +135,7 @@ def create_files(root_dir, blueprint:str, replacements:dict):
     make_empty_file(root_dir, "LICENSE")
     make_empty_file(root_dir, "README.md")
 
-    module_path = root_dir / "src" / package_dir
+    module_path = source_dir
     module_file_name = "{}.py".format(replacements["$MODULE_NAME"])
 
     make_empty_file(module_path, "__init__.py")
@@ -128,6 +147,7 @@ def make_empty_file(file_path, file_name):
     file.close()
 
 
+
 def run():
     try:
         project_path = sanitize_directory_name(argv[1])
@@ -136,15 +156,16 @@ def run():
         print(usage)
         exit()
 
-    gather_data(replacements)
+    gather_replacements(replacements)
 
     root_directory = Path.cwd() / project_path
+    source_directory = root_directory / replacements["$PACKAGE_NAME"]
     print(f"This will create your project at {root_directory}. Is this where you want it?")
     decision = get_defined_input("Y", "n")
     
     if decision == "Y":
-        create_directories(root_directory)
-        create_files(root_directory, toml_blueprint, replacements)
+        create_directories(root_directory, source_directory)
+        create_files(root_directory, source_directory, toml_blueprint, replacements)
 
 
 if __name__ == '__main__':
