@@ -79,6 +79,7 @@ def get_alphanumeric_input(prompt):
 
     return tested
 
+
 def get_name(prompt):
     approved = False
     while not approved:
@@ -86,6 +87,7 @@ def get_name(prompt):
         approved = all(c.isalpha() or c.isspace() for c in tested)
 
     return tested
+
 
 def get_email(prompt):
     approved = False
